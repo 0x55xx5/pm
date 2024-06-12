@@ -240,9 +240,8 @@ int ghost_move(struct pacman *p, int i) {
   int d, move, cost = INF;
   char n, l, r, t, b;
 
-  // we don't always have to move the ghosts
-  // to lower the difficulty of the game.
-  if (rand() % 3 == 0)
+  // 亂數碰撞如果是偶數則不動 
+  if (rand() % 2 == 0)
     return 0;
 
   // see if it's shorter one step to the left.
@@ -331,7 +330,7 @@ void pacman_init(struct pacman *p, const char *path) {
   int i;
   struct ghost *ghost;
   struct food *food;
-
+  //開啟地圖檔
   if ((fp = fopen(path, "r")) == NULL) {
     perror("fopen");
     exit(1);
@@ -524,7 +523,6 @@ int main(int argc, char **argv) {
     
     switch (retval) {
     case GAME_LOSE:
-      render(&p);
       printf("You lose!\r\n"); // we are still in raw mode.
       goto done;
     case GAME_WIN:
@@ -536,6 +534,7 @@ int main(int argc, char **argv) {
     }
   }
 done:
+  render(&p);
   pacman_free(&p);
   return 0;
 }
