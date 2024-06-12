@@ -232,7 +232,6 @@ static struct ghost ghosts[] = {
     {'C', "👹", 4, 4, GHOST_HUNGER},
 };
 
-// TODO: fix the bug in function ghost_move
 int ghost_move(struct pacman *p, int i) {
   struct ghost *g = p->ghosts+i;
   int px = p->x, py = p->y; // current player position
