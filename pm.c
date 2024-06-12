@@ -431,6 +431,7 @@ static int render(struct pacman *p) {
 }
 
 int next(struct pacman *p, int key) {
+  render(p);
   int w = p->w, h = p->h;
   int x = p->x, y = p->y;
   int nx = x, ny = y;
@@ -472,12 +473,10 @@ int next(struct pacman *p, int key) {
     if (p->score == p->goal)
       return GAME_WIN;
     player(p) = PLAYER;
-    
-    return render(p);
   }
 
   
-  
+  return render(p);
 }
 
 int main(int argc, char **argv) {
