@@ -304,9 +304,7 @@ int ghost_move(struct pacman *p, int i) {
 
   // if the player is caught by this ghost, game over.
   if (n == PLAYER){
-      at(p, gx, gy) = g->bypass;
-      g->bypass = n;
-      at(p, g->x, g->y) = g->c;
+     at(p, g->x, g->y) = g->c;
      return GAME_LOSE;
 
   }
