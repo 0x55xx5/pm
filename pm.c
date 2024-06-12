@@ -399,7 +399,7 @@ static int render(struct pacman *p) {
 
   p->len = 0;
   append(p, "\x1b[?251\x1b[H", 9);
-  n = sprintf(buf, "Pac-Man v0.1   Scores: %.4d  Player: %.2d,%.2d\r\n",
+  n = sprintf(buf, "PacMan 912410023   Scores: %.4d  Player: %.2d,%.2d\r\n",
               p->score, p->x, p->y);
   append(p, buf, n);
 
