@@ -303,7 +303,6 @@ int ghost_move(struct pacman *p, int i) {
 
   // if the player is caught by this ghost, game over.
   if (n == PLAYER){
-    at(p, g->x, g->y) = g->c;
      return GAME_LOSE;
 
   }
@@ -438,6 +437,8 @@ int next(struct pacman *p, int key) {
   // move ghosts close to the player.
   for (i = 0; i < p->ghosts_len; i++) {
     if ((retval = ghost_move(p, i)) < 0)
+       struct ghost *g = p->ghosts+i;
+       at(p, g->x, g->y) = g->c;
       return retval;
   }
   
