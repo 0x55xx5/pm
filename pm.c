@@ -303,6 +303,7 @@ int ghost_move(struct pacman *p, int i) {
 
   // if the player is caught by this ghost, game over.
   if (n == PLAYER){
+    player(p) = n;
      return GAME_LOSE;
 
   }
@@ -518,7 +519,7 @@ int main(int argc, char **argv) {
     }
     // handle next frame
     retval = next(&p, key);
-    render(&p);
+  
     if (retval >= 0)
       continue;
     
