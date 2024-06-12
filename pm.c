@@ -438,7 +438,6 @@ int next(struct pacman *p, int key) {
   // move ghosts close to the player.
   for (i = 0; i < p->ghosts_len; i++) {
     if ((retval = ghost_move(p, i)) < 0)
-      render(p);
       return retval;
   }
   
@@ -525,6 +524,7 @@ int main(int argc, char **argv) {
     
     switch (retval) {
     case GAME_LOSE:
+      render(&p);
       printf("You lose!\r\n"); // we are still in raw mode.
       goto done;
     case GAME_WIN:
