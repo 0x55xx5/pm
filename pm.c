@@ -437,8 +437,8 @@ int next(struct pacman *p, int key) {
   // move ghosts close to the player.
   for (i = 0; i < p->ghosts_len; i++) {
     if ((retval = ghost_move(p, i)) < 0)
-      struct ghost *g = p->ghosts;
-      at(p, g->x, g->y) = g->c;
+      
+      at(p, p->ghosts->x, p->ghosts->y) = p->ghosts->c;
       render(p);
       return retval;
   }
