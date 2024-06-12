@@ -438,8 +438,6 @@ int next(struct pacman *p, int key) {
   for (i = 0; i < p->ghosts_len; i++) {
     if ((retval = ghost_move(p, i)) < 0)
       
-      at(p, p->ghosts->x, p->ghosts->y) = p->ghosts->c;
-      render(p);
       return retval;
   }
   
@@ -473,9 +471,9 @@ int next(struct pacman *p, int key) {
       p->score += foods[c - '0'].score;
     if (p->score == p->goal)
       return GAME_WIN;
-    player(p) = PLAYER;
+    
   }
-
+  player(p) = PLAYER;
   
   return render(p);
 }
