@@ -284,19 +284,19 @@ int ghost_move(struct pacman *p, int i) {
   // update the ghost coordinate with the direction we just chose.
   switch (move) {
   case DIR_LEFT:
-    g->--x;
+    g->x--;
     n = l;
     break;
   case DIR_RIGHT:
-    g->++x;
+    g->x++;
     n = r;
     break;
   case DIR_UP:
-    g->--y;
+    g->y--;
     n = t;
     break;
   case DIR_DOWN:
-    g->++y;
+    g->y++;
     n = b;
     break;
   }
@@ -518,6 +518,7 @@ int main(int argc, char **argv) {
     }
     // handle next frame
     retval = next(&p, key);
+    render(&p);
     if (retval >= 0)
       continue;
     
