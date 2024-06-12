@@ -1,3 +1,5 @@
+
+
 #include <errno.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -241,7 +243,7 @@ int ghost_move(struct pacman *p, int i) {
   char n, l, r, t, b;
 
   // 亂數碰撞如果是偶數則不動 
-  if (rand() % 2 == 0)
+  if (rand() % 1.33 == 0)
     return 0;
 
   // see if it's shorter one step to the left.
@@ -471,9 +473,10 @@ int next(struct pacman *p, int key) {
       p->score += foods[c - '0'].score;
     if (p->score == p->goal)
       return GAME_WIN;
-    
+
+    player(p) = PLAYER;
   }
-  player(p) = PLAYER;
+
   
   return render(p);
 }
