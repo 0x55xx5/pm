@@ -243,7 +243,7 @@ int ghost_move(struct pacman *p, int i) {
   char n, l, r, t, b;
 
   // 亂數碰撞如果是偶數則不動 
-  if (rand() % 1.33 == 0)
+  if (rand() % 7 == 0)
     return 0;
 
   // see if it's shorter one step to the left.
