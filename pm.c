@@ -301,9 +301,7 @@ int ghost_move(struct pacman *p, int i) {
     n = b;
     break;
   }
-  at(p, gx, gy) = g->bypass;
-  g->bypass = n;
-  at(p, g->x, g->y) = g->c;
+
   // if the player is caught by this ghost, game over.
   if (n == PLAYER){
      return GAME_LOSE;
@@ -316,7 +314,9 @@ int ghost_move(struct pacman *p, int i) {
   if (isghost(n))
     return 0;
 
-  
+  at(p, gx, gy) = g->bypass;
+  g->bypass = n;
+  at(p, g->x, g->y) = g->c;
   return 0;
 }
 
@@ -440,7 +440,7 @@ int next(struct pacman *p, int key) {
     if ((retval = ghost_move(p, i)) < 0)
       return retval;
   }
-
+  
   char c;
   if (key != KEY_NULL) {
     switch (key) {
@@ -472,10 +472,12 @@ int next(struct pacman *p, int key) {
     if (p->score == p->goal)
       return GAME_WIN;
     player(p) = PLAYER;
+    
+    return render(p);
   }
 
   
-  return render(p);
+  
 }
 
 int main(int argc, char **argv) {
