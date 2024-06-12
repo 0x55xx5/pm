@@ -232,6 +232,7 @@ static struct ghost ghosts[] = {
     {'C', "👹", 4, 4, GHOST_HUNGER},
 };
 
+// TODO: fix the bug in function ghost_move
 int ghost_move(struct pacman *p, int i) {
   struct ghost *g = p->ghosts+i;
   int px = p->x, py = p->y; // current player position
@@ -302,8 +303,14 @@ int ghost_move(struct pacman *p, int i) {
   }
 
   // if the player is caught by this ghost, game over.
-  if (n == PLAYER)
-    return GAME_LOSE;
+  if (n == PLAYER){
+      at(p, gx, gy) = g->bypass;
+      g->bypass = n;
+      at(p, g->x, g->y) = g->c;
+     return GAME_LOSE;
+
+  }
+   
 
   // if the chosen position to move to stands also a ghost 
   // and it's superior than the current one, we stand still.
