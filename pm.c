@@ -431,15 +431,16 @@ static int render(struct pacman *p) {
 }
 
 int next(struct pacman *p, int key) {
+  int w = p->w, h = p->h;
+  int x = p->x, y = p->y;
+  int nx = x, ny = y;
+  int i, retval;
   // move ghosts close to the player.
   for (i = 0; i < p->ghosts_len; i++) {
     if ((retval = ghost_move(p, i)) < 0)
       return retval;
   }
-  int w = p->w, h = p->h;
-  int x = p->x, y = p->y;
-  int nx = x, ny = y;
-  int i, retval;
+  
   char c;
   if (key != KEY_NULL) {
     switch (key) {
